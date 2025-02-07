@@ -4,10 +4,18 @@
 # changes in the corresponding template in the other chart.
 */}}
 
+{{- define "vastcsi.csiDriver" -}}
+{{- if $.Values.csiDriverName -}}
+{{- $.Values.csiDriverName }}
+{{- else -}}
+csi.vastdata.com
+{{- end -}}
+{{- end -}}
+
 {{- define "vastcsi.commonEnv" }}
 
 - name: X_CSI_PLUGIN_NAME
-  value: "csi.vastdata.com"
+  value: {{ include "vastcsi.csiDriver" $ | quote }}
 - name: X_CSI_VMS_HOST
   value: {{ $.Values.endpoint | default "" | quote }}
 - name: X_CSI_ENABLE_VMS_SSL_VERIFICATION
