@@ -8,6 +8,8 @@
 {{/* Common labels */}}
 {{- define "vastcsi.labels" -}}
 helm.sh/chart: {{ include "vastcsi.chart" . }}
+kubernetes.io/metadata.name: vast-csi-single-tenant
+ns.coreweave.cloud/org: ea8e69
 {{ include "vastcsi.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
